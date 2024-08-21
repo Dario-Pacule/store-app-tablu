@@ -23,7 +23,7 @@ export function CartProduct({ data }: Props) {
       <div className="bg-secondary flex-shrink-0 h-[116px] w-[100px] md:h-[211px] md:w-[256px]">
         <div
           style={{
-            backgroundImage: `url(/img/temp/nike_2/image.png)`,
+            backgroundImage: `url(${data.images[0].url})`,
             backgroundSize: "contain",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
