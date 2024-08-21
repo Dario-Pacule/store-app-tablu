@@ -45,7 +45,7 @@ export function ProductCard({ data }: Props) {
     >
       <div
         onClick={() => router.push(`/product/${data._id}`)}
-        className="bg-secondary cursor-pointer h-[300px]"
+        className="bg-secondary cursor-pointer h-[168px] md:h-[300px]"
       >
         <div
           style={{
@@ -64,7 +64,7 @@ export function ProductCard({ data }: Props) {
             {colorImages.map((image) => (
               <li
                 key={image._id}
-                className="bg-secondary flex-shrink-0 w-[50px] h-[45px] rounded-sm overflow-hidden cursor-pointer"
+                className="bg-secondary flex-shrink-0 w-[35px] h-[35px] md:w-[50px] md:h-[45px] rounded-sm overflow-hidden cursor-pointer"
                 onClick={() => setMainImage(image.url)}
                 style={{
                   backgroundImage: `url(${image.url})`,
@@ -81,16 +81,16 @@ export function ProductCard({ data }: Props) {
           <ScrollBar className="h-2" orientation="horizontal" />
         </ScrollArea>
 
-        <p className="text-lg line-clamp-1 px-3">{data.name}</p>
+        <p className="md:text-lg line-clamp-1 px-3">{data.name}</p>
 
         <div className="flex w-full">
           <div className="flex items-center w-full ml-3 mr-2 border-t-2 border-background">
-            <p className="font-bold text-lg">{formatCurrency(data.price)}</p>
+            <p className="font-bold md:text-lg">{formatCurrency(data.price)}</p>
           </div>
 
           <Button
             onClick={() => addToCartHandler(data)}
-            className="h-[49px] w-[59px] rounded-none"
+            className="h-[37px] p-1 md:p-4 w-[38px] flex-shrink-0 md:h-[49px] md:w-[59px] rounded-none"
           >
             <Plus size={24} />
           </Button>

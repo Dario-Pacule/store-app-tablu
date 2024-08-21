@@ -65,8 +65,8 @@ export default function Page() {
     product?.images.filter((image) => image.type === "view") || [];
 
   return (
-    <div className="w-full">
-      <BackButton />
+    <div className="w-full md:p-0 pb-12 px-4">
+      <BackButton className="p-0" />
 
       {!isLoading && error && (
         <div className="flex items-center text-center justify-center underline my-12 w-full">
@@ -84,9 +84,17 @@ export default function Page() {
       )}
 
       {!isLoading && (
-        <div className="flex flex-col md:flex-row gap-8 mt-6 w-full">
+        <div className="flex flex-col md:flex-row gap-4 md:gap-8 mt-6 w-full">
+          <div className="md:hidden space-y-2">
+            <h2 className="text-muted-foreground">{product?.category.name}</h2>
+
+            <h1 className="text-lg">{product?.name}</h1>
+
+            <p className="font-bold">MT {formatCurrency(product?.price!)}</p>
+          </div>
+
           <div className="flex gap-4 w-full  md:w-auto">
-            <ScrollArea className="w-[100px] space-y-4">
+            <ScrollArea className="w-[100px] hidden md:block space-y-4">
               <ul className="space-y-3">
                 {viewImages.map((image) => (
                   <li
@@ -111,7 +119,7 @@ export default function Page() {
 
             <div
               onClick={() => router.push(`/product/${product?._id}`)}
-              className="bg-secondary rounded-xl cursor-pointer h-[623px] w-[473px] flex justify-center items-center"
+              className="bg-secondary rounded-xl cursor-pointer h-[345px] md:h-[623px] w-[473px] flex justify-center items-center"
             >
               <div
                 style={{
@@ -125,19 +133,21 @@ export default function Page() {
             </div>
           </div>
 
-          <div className="w-full  md:w-full relative space-y-3 flex flex-col justify-between">
-            <div className="space-y-3">
-              <h2 className="text-muted-foreground">
-                {product?.category.name}
-              </h2>
+          <div className="w-full  md:w-full relative space-y-8 md:space-y-3 flex flex-col justify-between">
+            <div className="md:space-y-3">
+              <div className="hidden md:block space-y-3">
+                <h2 className="text-muted-foreground">
+                  {product?.category.name}
+                </h2>
 
-              <h1 className="text-3xl">{product?.name}</h1>
+                <h1 className="text-3xl">{product?.name}</h1>
 
-              <p className="text-lg font-bold">
-                MT {formatCurrency(product?.price!)}
-              </p>
+                <p className="text-lg font-bold">
+                  MT {formatCurrency(product?.price!)}
+                </p>
+              </div>
 
-              <p className="text-xs">
+              <p className="text-xs hidden md:block">
                 * Entrega grátis para compras acima de MT 15000,00.
               </p>
 
@@ -164,7 +174,7 @@ export default function Page() {
                 <ScrollBar className="h-2" orientation="horizontal" />
               </ScrollArea>
 
-              <div className="space-y-4">
+              <div className="mt-4 md:mt-0 space-y-6">
                 <p>TAMANHO</p>
                 <div className="flex gap-4">
                   {product?.sizes?.map((size) => (
@@ -185,7 +195,7 @@ export default function Page() {
                 </div>
               </div>
 
-              <div className="pt-4 space-y-3">
+              <div className="pt-6 space-y-8">
                 <p>DESCRIÇÃO</p>
                 <p className="text-sm line-clamp-4">{product?.description}</p>
               </div>
@@ -193,7 +203,7 @@ export default function Page() {
 
             <Button
               onClick={() => addToCartHandler(product!)}
-              className="bg-foreground w-full gap-2 rounded-md"
+              className="bg-foreground mt-8 md:mt-0 w-full gap-2 rounded-md"
             >
               <Image
                 src="/icons/shopping-bag-white.svg"

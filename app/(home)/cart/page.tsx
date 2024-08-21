@@ -14,7 +14,7 @@ export default function Page() {
   const totalQuantity = useAppSelector((state) => state.cart.totalQuantity);
 
   return (
-    <div className="w-full">
+    <div className="w-full md:p-0 px-4">
       <BackButton className="p-0" />
 
       <div className="grid grid-cols-1  md:grid-cols-3 gap-4 mt-4 w-full ">

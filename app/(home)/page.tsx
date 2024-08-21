@@ -70,7 +70,7 @@ export default function Home() {
 
   return (
     <main>
-      <Tabs defaultValue="all" className="p-0 m-0">
+      <Tabs defaultValue="all">
         <div className="flex flex-col-reverse mb-4 md:flex-row w-full md:justify-between md:items-center">
           <ProductCategories />
           <div className="ml-auto">
@@ -90,7 +90,7 @@ export default function Home() {
           </div>
         )}
 
-        <TabsContent value="all">
+        <TabsContent className="px-2" value="all">
           {!isLoading && (
             <div className="space-y-8">
               {!isSmallScreen && slipperPages > 0 && (
@@ -102,7 +102,7 @@ export default function Home() {
                   }
                 />
               )}
-              <div className="grid grid-cols-2 sm:lg:grid-cols-3 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
                 {getProductPage(
                   "sapatilhas",
                   getProductsByCategory("sapatilhas")
@@ -133,7 +133,7 @@ export default function Home() {
           )}
         </TabsContent>
 
-        <TabsContent value="slipper">
+        <TabsContent className="px-2" value="slipper">
           <div className="space-y-8">
             {!isSmallScreen && (
               <ProductPagination
@@ -155,7 +155,7 @@ export default function Home() {
           </div>
         </TabsContent>
 
-        <TabsContent value="t-shirt">
+        <TabsContent className="px-2" value="t-shirt">
           <div className="space-y-8">
             {!isSmallScreen && (
               <ProductPagination
