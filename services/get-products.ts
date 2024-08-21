@@ -4,19 +4,21 @@ import { products } from "@/temp/data/products";
 import { useQuery } from "@tanstack/react-query";
 
 type Props = {
-  id?: string | string[];
-  category?: string | string[];
+  id?: string;
+  category?: string;
 };
 
 export function useGetProducts({ id, category }: Props) {
   const url = buildUrl({ id, category });
 
   const query = useQuery({
-    queryKey: ["data", "products", id, category],
+    queryKey: ["data", "products"],
     queryFn: async () => {
       // const { data } = await api.get<ApiReturn<Product[]>>(url);
-      const { data } = { data: { data: products } };
 
+      const { data } = {
+        data: { data: products.filter((p) => p.name.includes(category ?? "")) },
+      };
       return data.data;
     },
   });

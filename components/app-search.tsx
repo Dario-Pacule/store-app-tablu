@@ -1,4 +1,6 @@
+"use client";
 import { cn } from "@/lib/utils";
+import { useGetProducts } from "@/services/get-products";
 import { Search } from "lucide-react";
 import * as React from "react";
 import { Button } from "./ui/button";
@@ -13,33 +15,48 @@ const SearchInput = React.forwardRef<HTMLInputElement, InputProps>(
     let placeHolder = placeholder ?? "";
     if (placeHolder && required) placeHolder = placeholder + " *";
 
+    const [searchKey, setSearchKey] = React.useState<string>();
+
+    const { refetch } = useGetProducts({
+      category: searchKey,
+    });
+
+    const handleSubmit = (e: React.FormEvent) => {
+      e.preventDefault();
+      refetch();
+    };
+
     return (
       <div className="w-full">
-        <div className="items-center relative w-full">
-          <input
-            ref={ref}
-            required={required}
-            placeholder={placeHolder}
-            className={cn(
-              error
-                ? "!border-red-500 !text-red-500 placeholder:!text-red-500 focus-visible:!ring-red-500"
-                : "text-foreground",
-              "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 pr-9",
-              className
-            )}
-            {...props}
-          />
+        <form onSubmit={handleSubmit}>
+          <div className="items-center relative w-full">
+            <input
+              ref={ref}
+              onChange={(e) => setSearchKey(e.target.value)}
+              required={required}
+              placeholder={placeHolder}
+              className={cn(
+                error
+                  ? "!border-red-500 !text-red-500 placeholder:!text-red-500 focus-visible:!ring-red-500"
+                  : "text-foreground",
+                "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 pr-9",
+                className
+              )}
+              {...props}
+            />
 
-          <Button
-            variant="ghost"
-            className={cn(
-              "absolute p-0 top-2.5 right-2 w-5 h-5",
-              error ? "text-red-500" : "text-inherit"
-            )}
-          >
-            <Search />
-          </Button>
-        </div>
+            <Button
+              variant="ghost"
+              type="submit"
+              className={cn(
+                "absolute p-0 top-2.5 right-2 w-5 h-5",
+                error ? "text-red-500" : "text-inherit"
+              )}
+            >
+              <Search />
+            </Button>
+          </div>
+        </form>
 
         {error && <span className="text-red-500 mt-1 text-xs">{error}</span>}
       </div>

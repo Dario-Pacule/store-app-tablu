@@ -89,6 +89,49 @@ export default function Home() {
             </div>
           )}
         </TabsContent>
+
+        <TabsContent value="slipper">
+          <div className="space-y-8">
+            <ProductPagination
+              currentPage={currentPages["sapatilhas"]}
+              totalPages={Math.ceil(
+                getProductsByCategory("sapatilhas").length / productsPerPage
+              )}
+              onPageChange={(newPage) =>
+                handlePageChange("sapatilhas", newPage)
+              }
+            />
+            <div className="grid grid-cols-4 gap-4">
+              {getProductPage(
+                "sapatilhas",
+                getProductsByCategory("sapatilhas")
+              ).map((product) => (
+                <ProductCard data={product} key={product._id} />
+              ))}
+            </div>
+          </div>
+        </TabsContent>
+
+        <TabsContent value="t-shirt">
+          <div className="space-y-8">
+            <ProductPagination
+              currentPage={currentPages["camisetas"]}
+              totalPages={Math.ceil(
+                getProductsByCategory("camisetas").length / productsPerPage
+              )}
+              onPageChange={(newPage) => handlePageChange("camisetas", newPage)}
+            />
+
+            <div className="grid grid-cols-4 gap-4">
+              {getProductPage(
+                "camisetas",
+                getProductsByCategory("camisetas")
+              ).map((product) => (
+                <ProductCard data={product} key={product._id} />
+              ))}
+            </div>
+          </div>
+        </TabsContent>
       </Tabs>
     </main>
   );
