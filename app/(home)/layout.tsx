@@ -9,11 +9,13 @@ export default function Layout({
 }>) {
   return (
     <main className="min-h-screen">
-      <div className="bg-card ">
-        <AppHeader className="max-w-screen-lg container py-4 mx-auto" />
+      <div className="bg-card fixed top-0 left-0 w-full z-50">
+        <AppHeader className="max-w-[1122px] container py-4 mx-auto" />
       </div>
 
-      <div className="container py-4 max-w-screen-lg overflow-hidden mx-auto">
+      <div className="h-[80px]" />
+
+      <div className="container py-4 max-w-[1122px] overflow-hidden mx-auto">
         {children}
       </div>
     </main>

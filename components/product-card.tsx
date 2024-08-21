@@ -70,6 +70,7 @@ export function ProductCard({ data }: Props) {
           <div className="flex items-center w-full ml-3 mr-2 border-t-2 border-background">
             <p className="font-bold text-lg">{formatCurrency(data.price)}</p>
           </div>
+
           <Button className="h-[49px] w-[59px] rounded-none">
             <Plus size={24} />
           </Button>
