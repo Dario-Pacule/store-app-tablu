@@ -19,6 +19,8 @@ export default function Home() {
     sapatilhas: 1,
     camisetas: 1,
   });
+
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
   const productsPerPage = 4;
 
   const getProductsByCategory = (category: string) => {
@@ -34,11 +36,24 @@ export default function Home() {
 
   const getProductPage = (category: string, products: Product[]) => {
     const currentPage = currentPages[category] || 1;
-    return products.slice(
-      (currentPage - 1) * productsPerPage,
-      currentPage * productsPerPage
-    );
+    return isSmallScreen
+      ? products
+      : products.slice(
+          (currentPage - 1) * productsPerPage,
+          currentPage * productsPerPage
+        );
   };
+
+  useEffect(() => {
+    const updateScreenSize = () => {
+      setIsSmallScreen(window.innerWidth < 640);
+    };
+
+    window.addEventListener("resize", updateScreenSize);
+    updateScreenSize();
+
+    return () => window.removeEventListener("resize", updateScreenSize);
+  }, []);
 
   useEffect(() => {
     const slipperP = Math.ceil(
@@ -56,7 +71,7 @@ export default function Home() {
   return (
     <main>
       <Tabs defaultValue="all">
-        <div className="flex w-full justify-between items-center">
+        <div className="flex flex-col-reverse mb-4 md:flex-row w-full md:justify-between items-center">
           <ProductCategories />
           <SortBy />
         </div>
@@ -76,7 +91,7 @@ export default function Home() {
         <TabsContent value="all">
           {!isLoading && (
             <div className="space-y-8">
-              {slipperPages > 0 && (
+              {!isSmallScreen && slipperPages > 0 && (
                 <ProductPagination
                   currentPage={currentPages["sapatilhas"]}
                   totalPages={slipperPages}
@@ -85,7 +100,7 @@ export default function Home() {
                   }
                 />
               )}
-              <div className="grid grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:lg:grid-cols-3 lg:grid-cols-4 gap-6">
                 {getProductPage(
                   "sapatilhas",
                   getProductsByCategory("sapatilhas")
@@ -94,7 +109,7 @@ export default function Home() {
                 ))}
               </div>
 
-              <div className="grid grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:lg:grid-cols-3 lg:grid-cols-4 gap-6">
                 {getProductPage(
                   "camisetas",
                   getProductsByCategory("camisetas")
@@ -103,7 +118,7 @@ export default function Home() {
                 ))}
               </div>
 
-              {tShirtPages > 0 && (
+              {!isSmallScreen && tShirtPages > 0 && (
                 <ProductPagination
                   currentPage={currentPages["camisetas"]}
                   totalPages={tShirtPages}
@@ -118,14 +133,16 @@ export default function Home() {
 
         <TabsContent value="slipper">
           <div className="space-y-8">
-            <ProductPagination
-              currentPage={currentPages["sapatilhas"]}
-              totalPages={slipperPages}
-              onPageChange={(newPage) =>
-                handlePageChange("sapatilhas", newPage)
-              }
-            />
-            <div className="grid grid-cols-4 gap-4">
+            {!isSmallScreen && (
+              <ProductPagination
+                currentPage={currentPages["sapatilhas"]}
+                totalPages={slipperPages}
+                onPageChange={(newPage) =>
+                  handlePageChange("sapatilhas", newPage)
+                }
+              />
+            )}
+            <div className="grid grid-cols-2 md:lg:grid-cols-3 lg:grid-cols-4 gap-6">
               {getProductPage(
                 "sapatilhas",
                 getProductsByCategory("sapatilhas")
@@ -138,13 +155,17 @@ export default function Home() {
 
         <TabsContent value="t-shirt">
           <div className="space-y-8">
-            <ProductPagination
-              currentPage={currentPages["camisetas"]}
-              totalPages={tShirtPages}
-              onPageChange={(newPage) => handlePageChange("camisetas", newPage)}
-            />
+            {!isSmallScreen && (
+              <ProductPagination
+                currentPage={currentPages["camisetas"]}
+                totalPages={tShirtPages}
+                onPageChange={(newPage) =>
+                  handlePageChange("camisetas", newPage)
+                }
+              />
+            )}
 
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:lg:grid-cols-3 lg:grid-cols-4 gap-6">
               {getProductPage(
                 "camisetas",
                 getProductsByCategory("camisetas")

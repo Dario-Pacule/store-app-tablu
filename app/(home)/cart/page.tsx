@@ -35,7 +35,7 @@ export default function Page() {
 
           <ul className="space-y-3 w-full">
             {cartItem.map((data) => (
-              <CartProduct data={data} />
+              <CartProduct key={data._id} data={data} />
             ))}
           </ul>
         </div>
