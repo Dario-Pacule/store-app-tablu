@@ -1,7 +1,7 @@
 import { Product, ProductSize } from "@/types/product";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface CartItem extends Product {
+export interface CartItem extends Product {
   quantity: number;
   selectedSize: ProductSize;
 }
@@ -48,7 +48,7 @@ const cartSlice = createSlice({
       state.totalQuantity += quantity;
       state.totalPrice += product.price * quantity;
     },
-    removeItemFromCart: (
+    removeFromCart: (
       state,
       action: PayloadAction<{ _id: string; sizeId: string }>
     ) => {
@@ -89,6 +89,6 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, removeItemFromCart, updateItemQuantity, clearCart } =
+export const { addToCart, removeFromCart, updateItemQuantity, clearCart } =
   cartSlice.actions;
 export default cartSlice.reducer;

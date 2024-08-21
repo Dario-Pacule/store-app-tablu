@@ -3,6 +3,7 @@
 import { useAppSelector } from "@/lib/redux";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 import { SearchInput } from "./app-search";
 
@@ -10,6 +11,7 @@ type Props = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 
 export function AppHeader({ className, ...props }: Props) {
   const cartLength = useAppSelector((state) => state.cart.totalQuantity);
+  const router = useRouter();
 
   return (
     <div
@@ -17,11 +19,12 @@ export function AppHeader({ className, ...props }: Props) {
       className={cn("w-full flex justify-between items-center", className)}
     >
       <Image
+        onClick={() => router.replace("/")}
         src="/img/icon.png"
         width={200}
         height={200}
         alt="Tablu store logo"
-        className="w-14 h-auto"
+        className="w-14 h-auto cursor-pointer"
       />
 
       <div className="flex gap-4">
@@ -30,7 +33,10 @@ export function AppHeader({ className, ...props }: Props) {
           placeholder="Procurando por algo específico?"
         />
 
-        <div className="relative">
+        <div
+          onClick={() => router.push("/cart")}
+          className="cursor-pointer relative"
+        >
           <Image
             src="/icons/shopping-bag.svg"
             width={24}

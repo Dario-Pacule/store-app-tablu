@@ -23,8 +23,6 @@ export default function Page() {
   const [product, setProduct] = useState<Product>();
   const [selectedSize, setSelectedSize] = useState<ProductSize | null>(null);
 
-  console.log(produt);
-
   const { data, isLoading, error } = useGetProducts({ _id: produt[0] });
 
   const addToCartHandler = (product: Product) => {
