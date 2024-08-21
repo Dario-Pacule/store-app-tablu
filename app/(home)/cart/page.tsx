@@ -15,12 +15,12 @@ export default function Page() {
 
   return (
     <div className="w-full">
-      <BackButton />
+      <BackButton className="p-0" />
 
-      <div className="grid gap-4 mt-6 w-full grid-cols-3">
-        <div className="w-full space-y-2 col-span-2">
-          <h1 className="text-2xl">MEU CARRINHO</h1>
-          <p>
+      <div className="grid grid-cols-1  md:grid-cols-3 gap-4 mt-4 w-full ">
+        <div className="w-full order-2 md:order-1 space-y-2 col-span-2">
+          <h1 className="text-2xl hidden md:block">MEU CARRINHO</h1>
+          <p className="hidden md:block">
             Total ({totalQuantity} produtos){" "}
             <span className="font-semibold">
               MT {formatCurrency(totalPrice)}
@@ -40,7 +40,7 @@ export default function Page() {
           </ul>
         </div>
 
-        <Card className="relative w-full flex-shrink-0 p-4 h-[520px]">
+        <Card className="relative w-full order-1 md:order-2 flex-shrink-0 p-4 py-6 md:h-[520px]">
           <p className="font-bold text-lg">RESUMO DO PEDIDO</p>
 
           <div className="flex flex-col gap-3 text-sm mt-4">
@@ -68,7 +68,7 @@ export default function Page() {
 
           <Link
             href="#"
-            className="absolute underline text-muted-foreground bottom-5 left-5"
+            className="absolute hidden md:block underline text-muted-foreground bottom-5 left-5"
           >
             Ajuda
           </Link>

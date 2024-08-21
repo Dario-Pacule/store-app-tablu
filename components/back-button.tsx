@@ -2,14 +2,17 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { ComponentProps } from "react";
 import { Button } from "./ui/button";
 
-export function BackButton() {
+type Props = ComponentProps<typeof Button>;
+
+export function BackButton({ ...props }: Props) {
   const router = useRouter();
 
   return (
     <div className="w-full text-muted-foreground">
-      <Button onClick={() => router.back()} variant="ghost">
+      <Button {...props} onClick={() => router.back()} variant="ghost">
         <Image
           src="/icons/back.svg"
           width={24}
