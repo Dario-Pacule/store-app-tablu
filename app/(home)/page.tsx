@@ -1,5 +1,6 @@
 "use client";
 
+import { AppEmpty } from "@/components/app-empty";
 import ProductLoader from "@/components/loader/product-loader";
 import { ProductCard } from "@/components/product-card";
 import { ProductCategories } from "@/components/product-categories";
@@ -8,10 +9,12 @@ import { SortBy } from "@/components/sort-by";
 import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { useGetProducts } from "@/services/get-products";
 import { Product } from "@/types/product";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const { data, isLoading } = useGetProducts({});
+  const [slipperPages, setSlipperPages] = useState(0);
+  const [tShirtPages, setTShirtPagesPages] = useState(0);
   const [currentPages, setCurrentPages] = useState<{ [key: string]: number }>({
     sapatilhas: 1,
     camisetas: 1,
@@ -37,6 +40,19 @@ export default function Home() {
     );
   };
 
+  useEffect(() => {
+    const slipperP = Math.ceil(
+      getProductsByCategory("sapatilhas").length / productsPerPage
+    );
+
+    const tShirtP = Math.ceil(
+      getProductsByCategory("camisetas").length / productsPerPage
+    );
+
+    setTShirtPagesPages(tShirtP);
+    setSlipperPages(slipperP);
+  }, [data]);
+
   return (
     <main>
       <Tabs defaultValue="all">
@@ -45,20 +61,30 @@ export default function Home() {
           <SortBy />
         </div>
 
-        <TabsContent value="all">
-          {isLoading ? (
+        {!isLoading && slipperPages == 0 && tShirtPages == 0 && (
+          <div className="flex items-center justify-center underline my-12 w-full">
+            <AppEmpty />
+          </div>
+        )}
+
+        {isLoading && (
+          <div className="flex items-center justify-center my-12 w-full">
             <ProductLoader />
-          ) : (
+          </div>
+        )}
+
+        <TabsContent value="all">
+          {!isLoading && (
             <div className="space-y-8">
-              <ProductPagination
-                currentPage={currentPages["sapatilhas"]}
-                totalPages={Math.ceil(
-                  getProductsByCategory("sapatilhas").length / productsPerPage
-                )}
-                onPageChange={(newPage) =>
-                  handlePageChange("sapatilhas", newPage)
-                }
-              />
+              {slipperPages > 0 && (
+                <ProductPagination
+                  currentPage={currentPages["sapatilhas"]}
+                  totalPages={slipperPages}
+                  onPageChange={(newPage) =>
+                    handlePageChange("sapatilhas", newPage)
+                  }
+                />
+              )}
               <div className="grid grid-cols-4 gap-4">
                 {getProductPage(
                   "sapatilhas",
@@ -77,15 +103,15 @@ export default function Home() {
                 ))}
               </div>
 
-              <ProductPagination
-                currentPage={currentPages["camisetas"]}
-                totalPages={Math.ceil(
-                  getProductsByCategory("camisetas").length / productsPerPage
-                )}
-                onPageChange={(newPage) =>
-                  handlePageChange("camisetas", newPage)
-                }
-              />
+              {tShirtPages > 0 && (
+                <ProductPagination
+                  currentPage={currentPages["camisetas"]}
+                  totalPages={tShirtPages}
+                  onPageChange={(newPage) =>
+                    handlePageChange("camisetas", newPage)
+                  }
+                />
+              )}
             </div>
           )}
         </TabsContent>
@@ -94,9 +120,7 @@ export default function Home() {
           <div className="space-y-8">
             <ProductPagination
               currentPage={currentPages["sapatilhas"]}
-              totalPages={Math.ceil(
-                getProductsByCategory("sapatilhas").length / productsPerPage
-              )}
+              totalPages={slipperPages}
               onPageChange={(newPage) =>
                 handlePageChange("sapatilhas", newPage)
               }
@@ -116,9 +140,7 @@ export default function Home() {
           <div className="space-y-8">
             <ProductPagination
               currentPage={currentPages["camisetas"]}
-              totalPages={Math.ceil(
-                getProductsByCategory("camisetas").length / productsPerPage
-              )}
+              totalPages={tShirtPages}
               onPageChange={(newPage) => handlePageChange("camisetas", newPage)}
             />
 
