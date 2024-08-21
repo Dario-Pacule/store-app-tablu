@@ -1,3 +1,4 @@
+import { QueryProvider } from "@/providers/query-provider";
 import type { Metadata } from "next";
 import { Saira } from "next/font/google";
 import "./globals.css";
@@ -16,7 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-pt">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <QueryProvider>{children}</QueryProvider>
+      </body>
     </html>
   );
 }
