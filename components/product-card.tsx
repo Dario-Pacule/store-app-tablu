@@ -5,6 +5,7 @@ import { useAppDispatch } from "@/lib/redux";
 import { addToCart } from "@/lib/redux/slices/cart";
 import { Product } from "@/types/product";
 import { Plus } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "./ui/button";
 
@@ -15,6 +16,7 @@ type Props = {
 export function ProductCard({ data }: Props) {
   const [mainImage, setMainImage] = useState(data.images[0]?.url || "");
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const addToCartHandler = (product: Product) => {
     dispatch(addToCart({ product, quantity: 1 }));
@@ -36,7 +38,10 @@ export function ProductCard({ data }: Props) {
       }}
       className="bg-card flex-shrink-0 rounded-xl w-full overflow-hidden"
     >
-      <div className="bg-secondary h-[300px]">
+      <div
+        onClick={() => router.push(`/product/${data._id}`)}
+        className="bg-secondary cursor-pointer h-[300px]"
+      >
         <div
           style={{
             backgroundImage: `url(${mainImage})`,
