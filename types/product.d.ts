@@ -22,4 +22,5 @@ export interface ProductImage {
   url: string;
   size: number;
   description?: string;
+  type: "color" | "view";
 }

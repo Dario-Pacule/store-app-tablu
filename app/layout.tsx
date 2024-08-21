@@ -1,3 +1,4 @@
+import { Toaster } from "@/components/ui/sonner";
 import { QueryProvider } from "@/providers/query-provider";
 import StoreProvider from "@/providers/store-provider";
 import type { Metadata } from "next";
@@ -20,7 +21,9 @@ export default function RootLayout({
     <html lang="pt-pt">
       <body className={inter.className}>
         <QueryProvider>
-          <StoreProvider>{children}</StoreProvider>
+          <StoreProvider>
+            {children} <Toaster duration={5000} />
+          </StoreProvider>
         </QueryProvider>
       </body>
     </html>

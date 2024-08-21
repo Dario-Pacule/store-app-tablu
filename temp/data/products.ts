@@ -13,6 +13,15 @@ export const products: Product[] = [
         url: "/img/temp/nike_1/image-1.png",
         size: 120,
         description: "Vista frontal",
+        type: "view",
+      },
+      {
+        _id: "img1",
+        name: "Nike Air Max Front",
+        url: "/img/temp/nike_1/image-1.png",
+        size: 120,
+        description: "Vista frontal",
+        type: "color",
       },
       {
         _id: "img2",
@@ -20,6 +29,7 @@ export const products: Product[] = [
         url: "/img/temp/nike_1/image-2.png",
         size: 150,
         description: "Vista lateral",
+        type: "color",
       },
     ],
     sizes: [
@@ -40,6 +50,15 @@ export const products: Product[] = [
         url: "/img/temp/nike_2/image.png",
         size: 140,
         description: "Vista frontal",
+        type: "view",
+      },
+      {
+        _id: "img3",
+        name: "Adidas Ultraboost Front",
+        url: "/img/temp/nike_2/image.png",
+        size: 140,
+        description: "Vista frontal",
+        type: "color",
       },
     ],
     sizes: [
@@ -60,6 +79,15 @@ export const products: Product[] = [
         url: "/img/temp/nike_3/image-1.png",
         size: 130,
         description: "Vista lateral",
+        type: "view",
+      },
+      {
+        _id: "img5",
+        name: "Puma RS-X Side",
+        url: "/img/temp/nike_3/image-1.png",
+        size: 130,
+        description: "Vista lateral",
+        type: "color",
       },
       {
         _id: "img6",
@@ -67,6 +95,7 @@ export const products: Product[] = [
         url: "/img/temp/nike_3/image-2.png",
         size: 135,
         description: "Vista superior",
+        type: "color",
       },
     ],
     sizes: [
@@ -87,6 +116,15 @@ export const products: Product[] = [
         url: "/img/temp/nike_4/image.png",
         size: 125,
         description: "Vista lateral",
+        type: "view",
+      },
+      {
+        _id: "img8",
+        name: "Vans Old Skool Side",
+        url: "/img/temp/nike_4/image.png",
+        size: 125,
+        description: "Vista lateral",
+        type: "color",
       },
     ],
     sizes: [
@@ -107,6 +145,15 @@ export const products: Product[] = [
         url: "/img/temp/nike_3/image-1.png",
         size: 115,
         description: "Vista frontal",
+        type: "view",
+      },
+      {
+        _id: "img9",
+        name: "Reebok Classic Front",
+        url: "/img/temp/nike_3/image-1.png",
+        size: 115,
+        description: "Vista frontal",
+        type: "color",
       },
       {
         _id: "img10",
@@ -114,6 +161,7 @@ export const products: Product[] = [
         url: "/img/temp/nike_3/image-2.png",
         size: 125,
         description: "Vista lateral",
+        type: "color",
       },
     ],
     sizes: [
@@ -123,8 +171,6 @@ export const products: Product[] = [
     description: "Modelo casual clássico com estilo retrô.",
     category: categorys[0],
   },
-
-  // Produtos da categoria "camisetas"
   {
     _id: "prod6",
     name: "Camiseta Nike Dry-Fit",
@@ -136,6 +182,15 @@ export const products: Product[] = [
         url: "/img/temp/t-shirt_1/image-1.png",
         size: 140,
         description: "Vista frontal",
+        type: "view",
+      },
+      {
+        _id: "img11",
+        name: "Camiseta Nike Dry-Fit Front",
+        url: "/img/temp/t-shirt_1/image-1.png",
+        size: 140,
+        description: "Vista frontal",
+        type: "color",
       },
       {
         _id: "img12",
@@ -143,6 +198,7 @@ export const products: Product[] = [
         url: "/img/temp/t-shirt_1/image-2.png",
         size: 145,
         description: "Vista traseira",
+        type: "color",
       },
     ],
     sizes: [
@@ -163,6 +219,15 @@ export const products: Product[] = [
         url: "/img/temp/t-shirt_2/image.png",
         size: 135,
         description: "Vista frontal",
+        type: "view",
+      },
+      {
+        _id: "img13",
+        name: "Camiseta Adidas Essentials Front",
+        url: "/img/temp/t-shirt_2/image.png",
+        size: 135,
+        description: "Vista frontal",
+        type: "color",
       },
     ],
     sizes: [
@@ -183,6 +248,15 @@ export const products: Product[] = [
         url: "/img/temp/t-shirt_3/image-1.png",
         size: 130,
         description: "Vista frontal",
+        type: "view",
+      },
+      {
+        _id: "img15",
+        name: "Camiseta Puma Active Front",
+        url: "/img/temp/t-shirt_3/image-1.png",
+        size: 130,
+        description: "Vista frontal",
+        type: "color",
       },
       {
         _id: "img16",
@@ -190,6 +264,7 @@ export const products: Product[] = [
         url: "/img/temp/t-shirt_3/image-2.png",
         size: 135,
         description: "Vista traseira",
+        type: "color",
       },
     ],
     sizes: [
@@ -210,6 +285,15 @@ export const products: Product[] = [
         url: "/img/temp/t-shirt_4/image.png",
         size: 140,
         description: "Vista frontal",
+        type: "view",
+      },
+      {
+        _id: "img17",
+        name: "Camiseta Under Armour Tech Front",
+        url: "/img/temp/t-shirt_4/image.png",
+        size: 140,
+        description: "Vista frontal",
+        type: "color",
       },
     ],
     sizes: [
@@ -230,6 +314,15 @@ export const products: Product[] = [
         url: "/img/temp/t-shirt_5/image.png",
         size: 140,
         description: "Vista frontal",
+        type: "view",
+      },
+      {
+        _id: "img19",
+        name: "Camiseta Asics Graphic Front",
+        url: "/img/temp/t-shirt_5/image.png",
+        size: 140,
+        description: "Vista frontal",
+        type: "color",
       },
       {
         _id: "img20",
@@ -237,6 +330,7 @@ export const products: Product[] = [
         url: "/img/temp/t-shirt_5/image-2.png",
         size: 145,
         description: "Vista traseira",
+        type: "color",
       },
     ],
     sizes: [

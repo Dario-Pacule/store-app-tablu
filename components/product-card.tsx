@@ -19,7 +19,9 @@ export function ProductCard({ data }: Props) {
   const router = useRouter();
 
   const addToCartHandler = (product: Product) => {
-    dispatch(addToCart({ product, quantity: 1 }));
+    dispatch(
+      addToCart({ product, quantity: 1, selectedSize: product.sizes![0] })
+    );
   };
 
   const formatCurrency = (amount: number) => {
@@ -30,6 +32,9 @@ export function ProductCard({ data }: Props) {
 
     return numberFormat.format(amount).replace("MTn", "MT");
   };
+
+  const colorImages =
+    data?.images.filter((image) => image.type === "color") || [];
 
   return (
     <div
@@ -56,7 +61,7 @@ export function ProductCard({ data }: Props) {
       <div className="flex flex-col">
         <ScrollArea className="w-full whitespace-nowrap pt-3 px-3">
           <ul className="flex gap-3 pb-3">
-            {data.images.map((image) => (
+            {colorImages.map((image) => (
               <li
                 key={image._id}
                 className="bg-secondary flex-shrink-0 w-[50px] h-[45px] rounded-sm overflow-hidden cursor-pointer"

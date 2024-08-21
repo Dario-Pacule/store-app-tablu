@@ -13,6 +13,7 @@ import { ScrollArea } from "@radix-ui/react-scroll-area";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 export default function Page() {
   const { produt } = useParams();
@@ -32,9 +33,11 @@ export default function Page() {
         addToCart({
           product,
           quantity: 1,
-          // size: selectedSize,
+          selectedSize,
         })
       );
+    } else {
+      toast.warning("Escolha um tamanho.");
     }
   };
 
@@ -57,6 +60,11 @@ export default function Page() {
   const handleSizeSelection = (size: ProductSize) => {
     setSelectedSize(size);
   };
+
+  const colorImages =
+    product?.images.filter((image) => image.type === "color") || [];
+  const viewImages =
+    product?.images.filter((image) => image.type === "view") || [];
 
   return (
     <div className="w-full">
@@ -82,7 +90,7 @@ export default function Page() {
           <div className="flex gap-4 w-full  md:w-auto">
             <ScrollArea className="w-[100px] space-y-4">
               <ul className="space-y-3">
-                {product?.images.map((image) => (
+                {viewImages.map((image) => (
                   <li
                     key={image._id}
                     className="bg-secondary flex-shrink-0 w-[100px] h-[100px] rounded-lg overflow-hidden cursor-pointer"
@@ -137,7 +145,7 @@ export default function Page() {
 
               <ScrollArea className="w-full">
                 <ul className="flex gap-3">
-                  {product?.images.map((image) => (
+                  {colorImages.map((image) => (
                     <li
                       key={image._id}
                       className="bg-secondary flex-shrink-0 w-[100px] h-[100px] rounded-lg overflow-hidden cursor-pointer"
@@ -168,10 +176,10 @@ export default function Page() {
                         selectedSize?._id === size._id
                           ? "bg-foreground text-white"
                           : ""
-                      }`} // Aplica estilo ativo se o botão estiver selecionado
+                      }`}
                       variant="outline"
                       pressed={selectedSize?._id === size._id}
-                      onPressedChange={() => handleSizeSelection(size)} // Atualiza o estado ao clicar
+                      onPressedChange={() => handleSizeSelection(size)}
                     >
                       {size.name}
                     </Toggle>
