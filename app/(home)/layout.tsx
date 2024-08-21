@@ -15,7 +15,7 @@ export default function Layout({
 
       <div className="h-[80px]" />
 
-      <div className="container py-4 max-w-[1122px] overflow-hidden mx-auto">
+      <div className="md:container py-2 md:py-4 md:max-w-[1122px] overflow-hidden md:mx-auto">
         {children}
       </div>
     </main>

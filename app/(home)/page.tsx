@@ -70,10 +70,12 @@ export default function Home() {
 
   return (
     <main>
-      <Tabs defaultValue="all">
-        <div className="flex flex-col-reverse mb-4 md:flex-row w-full md:justify-between items-center">
+      <Tabs defaultValue="all" className="p-0 m-0">
+        <div className="flex flex-col-reverse mb-4 md:flex-row w-full md:justify-between md:items-center">
           <ProductCategories />
-          <SortBy />
+          <div className="ml-auto">
+            <SortBy />
+          </div>
         </div>
 
         {!isLoading && slipperPages == 0 && tShirtPages == 0 && (
@@ -100,7 +102,7 @@ export default function Home() {
                   }
                 />
               )}
-              <div className="grid grid-cols-2 md:lg:grid-cols-3 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 sm:lg:grid-cols-3 lg:grid-cols-4 gap-6">
                 {getProductPage(
                   "sapatilhas",
                   getProductsByCategory("sapatilhas")
