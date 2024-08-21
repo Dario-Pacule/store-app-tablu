@@ -1,3 +1,6 @@
+"use client";
+
+import { useAppSelector } from "@/lib/redux";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { DetailedHTMLProps, HTMLAttributes } from "react";
@@ -6,6 +9,8 @@ import { SearchInput } from "./app-search";
 type Props = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 
 export function AppHeader({ className, ...props }: Props) {
+  const cartLength = useAppSelector((state) => state.cart.totalQuantity);
+
   return (
     <div
       {...props}
@@ -33,9 +38,11 @@ export function AppHeader({ className, ...props }: Props) {
             alt="Tablu store logo"
             className="w-8 flex-shrink-0"
           />
-          <div className="absolute -right-1.5 bottom-0.5 bg-destructive flex items-center justify-center text-xs text-card w-5 h-5 rounded-full">
-            <p>12</p>
-          </div>
+          {cartLength > 0 && (
+            <div className="absolute -right-1.5 bottom-0.5 bg-destructive flex items-center justify-center text-xs text-card w-5 h-5 rounded-full">
+              <p>{cartLength}</p>
+            </div>
+          )}
         </div>
       </div>
     </div>

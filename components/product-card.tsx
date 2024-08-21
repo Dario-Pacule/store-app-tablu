@@ -1,6 +1,8 @@
 "use client";
 
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { useAppDispatch } from "@/lib/redux";
+import { addToCart } from "@/lib/redux/slices/cart";
 import { Product } from "@/types/product";
 import { Plus } from "lucide-react";
 import { useState } from "react";
@@ -12,6 +14,11 @@ type Props = {
 
 export function ProductCard({ data }: Props) {
   const [mainImage, setMainImage] = useState(data.images[0]?.url || "");
+  const dispatch = useAppDispatch();
+
+  const addToCartHandler = (product: Product) => {
+    dispatch(addToCart({ product, quantity: 1 }));
+  };
 
   const formatCurrency = (amount: number) => {
     const numberFormat = new Intl.NumberFormat("pt-MZ", {
@@ -71,7 +78,10 @@ export function ProductCard({ data }: Props) {
             <p className="font-bold text-lg">{formatCurrency(data.price)}</p>
           </div>
 
-          <Button className="h-[49px] w-[59px] rounded-none">
+          <Button
+            onClick={() => addToCartHandler(data)}
+            className="h-[49px] w-[59px] rounded-none"
+          >
             <Plus size={24} />
           </Button>
         </div>
