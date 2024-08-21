@@ -13,7 +13,9 @@ export default function Layout({
         <AppHeader className="max-w-screen-lg container py-4 mx-auto" />
       </div>
 
-      <div className="container py-4 max-w-screen-lg mx-auto">{children}</div>
+      <div className="container py-4 max-w-screen-lg overflow-hidden mx-auto">
+        {children}
+      </div>
     </main>
   );
 }
