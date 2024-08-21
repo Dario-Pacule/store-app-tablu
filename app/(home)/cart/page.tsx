@@ -18,7 +18,7 @@ export default function Page() {
       <BackButton className="p-0" />
 
       <div className="grid grid-cols-1  md:grid-cols-3 gap-4 mt-4 w-full ">
-        <div className="w-full order-2 md:order-1 space-y-2 col-span-2">
+        <div className="w-full order-2 md:order-1 space-y-2 md:col-span-2">
           <h1 className="text-2xl hidden md:block">MEU CARRINHO</h1>
           <p className="hidden md:block">
             Total ({totalQuantity} produtos){" "}

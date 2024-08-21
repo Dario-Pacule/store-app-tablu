@@ -2,10 +2,12 @@
 
 import { useAppSelector } from "@/lib/redux";
 import { cn } from "@/lib/utils";
+import { Search } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 import { SearchInput } from "./app-search";
+import { Button } from "./ui/button";
 
 type Props = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 
@@ -27,15 +29,23 @@ export function AppHeader({ className, ...props }: Props) {
         className="w-14 h-auto cursor-pointer"
       />
 
-      <div className="flex gap-4">
-        <SearchInput
-          className="min-w-[320px]"
-          placeholder="Procurando por algo específico?"
-        />
+      <div className="flex items-center md:gap-4">
+        <div className="hidden md:block">
+          <SearchInput
+            className=" min-w-[320px]"
+            placeholder="Procurando por algo específico?"
+          />
+        </div>
+
+        <div className="md:hidden">
+          <Button className="-mt-2" variant="ghost">
+            <Search />
+          </Button>
+        </div>
 
         <div
           onClick={() => router.push("/cart")}
-          className="cursor-pointer relative"
+          className="cursor-pointer h-10 relative"
         >
           <Image
             src="/icons/shopping-bag.svg"
